@@ -1,0 +1,26 @@
+<div id="lista-predmeta" class="tab-content{% if active_tab == 'lista-predmeta' %} active{% endif %}">
+    <h2>Lista Predmeta</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ime</th>
+                <th>Kod</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for predmet in predmeti %}
+            <tr>
+                <td>{{ predmet.ime }}</td>
+                <td>{{ predmet.kod }}</td>
+                <td>
+                    <a href="#" onclick="openModal('detailsModal{{ predmet.id }}')">Details</a>
+                    <a href="{% url 'update_predmet' predmet_id=predmet.pk %}">Edit</a>
+                    <a href="#" onclick="openModal('deleteModal{{ predmet.id }}')">Delete</a>
+                    <a href="{% url 'popis_studenata' predmet_id=predmet.pk %}">Popis Studenata</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

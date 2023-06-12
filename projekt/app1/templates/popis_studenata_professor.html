@@ -1,0 +1,78 @@
+<!-- popis_studenata_profesor.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Popis Studenata</title>
+    <link rel="stylesheet" href="{% static 'css/popis_studenata.css' %}">
+    <script>
+        function filterStudents() {
+            var statusSelect = document.getElementById('status');
+            var selectedStatus = statusSelect.value;
+            var tableRows = document.getElementsByClassName("student-row");
+            for (var i = 0; i < tableRows.length; i++) {
+                var row = tableRows[i];
+                var dataStatus = row.getAttribute("data-status");
+                if (selectedStatus === "all" || dataStatus === selectedStatus) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var statusSelect = document.getElementById('status');
+            statusSelect.addEventListener('change', filterStudents);
+
+            // Apply the initial filter
+            filterStudents();
+        });
+    </script>
+</head>
+
+<body>
+    <a href="{% url 'main_page_professor' %}">Back to Home</a>
+    <div class="modal-content">
+        <h2>Popis Studenata Na Predmetu {{ predmet.ime }}</h2>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="predmet_id" value="{{ predmet.id }}">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="all">All</option>
+                    <option value="Upisan">Upisan</option>
+                    <option value="Dobio Potpis">Dobio Potpis</option>
+                    <option value="Izgubio Potpis">Izgubio Potpis</option>
+                </select>
+                <table>
+                    <tr>
+                        <th>Student</th>
+                        <th>Status</th>
+                        <th>Promijeni Status</th>
+                    </tr>
+                    {% for status, upisi in students_by_status.items %}
+                    {% for upis in upisi %}
+                    <tr class="student-row" data-status="{{ status }}">
+                        <td>{{ upis.student.username }}</td>
+                        <td>{{ status }}</td>
+                        <td class="btn-group">
+                            <input type="hidden" name="student" value="{{ upis.student.username }}">
+                            <input type="hidden" name="status_value" value="polozen">
+                            <button type="submit" name="status_value" value="polozen">Položen</button>
+                            <button type="submit" name="status_value" value="dobio_potpis">Dobio Potpis</button>
+                            <button type="submit" name="status_value" value="izgubio_potpis">Izgubio Potpis</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    {% endfor %}
+                </table>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

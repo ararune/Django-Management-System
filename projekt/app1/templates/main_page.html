@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Main Page</h2>
+  <p>Welcome to the main page, {{ user.username }}!</p>
+  <ul>
+    <li>Username: {{ user.username }}</li>
+    <li>Email: {{ user.email }}</li>
+    <li>Role: {{ user.uloga }}</li>
+    <li>Status: {{ user.status }}</li>
+    <!-- Add any other user fields you want to display -->
+  </ul>
+  <form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+  </form>
+{% endblock %}

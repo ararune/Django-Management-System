@@ -1,0 +1,29 @@
+<!-- group_row.html -->
+{% load custom_filters %}
+
+{% ifchanged semester %}
+    {% if not forloop.first %}
+        <tr>
+            <td colspan="3"></td>
+        </tr>
+    {% endif %}
+    <tr>
+        <td colspan="3" class="semester-heading">{{ semester|ordinal_suffix }} semester</td>
+    </tr>
+{% endifchanged %}
+<tr>
+    <td>{{ predmet.ime }}</td>
+    <td>
+        <input type="hidden" name="status_{{ predmet.id }}" value="{{ upis_status|get_status:predmet.id }}">
+<select name="status_{{ predmet.id }}" {% if upis_status|get_status:predmet.id == 'polozen' or upis_status|get_status:predmet.id == 'dobio_potpis' or upis_status|get_status:predmet.id == 'izgubio_potpis' %}disabled{% endif %}>
+    <option value="upisan" {% if upis_status|get_status:predmet.id == 'upisan' %}selected{% endif %}>Upisan</option>
+    <option value="neupisan" {% if upis_status|get_status:predmet.id == 'neupisan' %}selected{% endif %}>Neupisan</option>
+<!--     <option value="polozen" {% if upis_status|get_status:predmet.id == 'polozen' %}selected{% endif %}>Položen</option>
+    <option value="dobio_potpis" {% if upis_status|get_status:predmet.id == 'dobio_potpis' %}selected{% endif %}>Dobio Potpis</option>
+    <option value="izgubio_potpis" {% if upis_status|get_status:predmet.id == 'izgubio_potpis' %}selected{% endif %}>Izgubio Potpis</option> -->
+</select>
+
+        
+    </td>
+    <td>{{ predmet.ects }}</td>
+</tr>

@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h5 class="text-xl font-medium">Login</h5>
+    <div class="form-group">
+      <form method="post" class="space-y-6">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+        {% if error_message %}
+        <p class="error">{{ error_message }}</p>
+        {% endif %}
+      </form>
+    </div>
+    <div class="image-container">
+      <img src="{% static 'img/astronaut.png' %}" alt="Camera Image">
+    </div>
+  </div>
+</body>
+</html>

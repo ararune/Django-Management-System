@@ -1,0 +1,15 @@
+<div id="add-predmet" class="tab-content{% if active_tab == 'add-predmet' %} active{% endif %}">
+    <h2>Dodaj Predmet</h2>
+    {% if success_message %}
+    <p class="success">{{ success_message }}</p>
+    {% endif %}
+    {% if fail_message %}
+    <p class="fail">{{ fail_message }}</p>
+    {% endif %}
+
+    <form method="post" class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Dodaj Predmet</button>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<div class="sidebar">
+    <div class="tab">
+        <a href="#home" onclick="showContent(event, 'home')">Home</a>
+    </div>
+    <div class="tab">
+        <a href="#register" onclick="showContent(event, 'register')">Register</a>
+    </div>
+    <div class="tab">
+        <a href="#add-predmet" onclick="showContent(event, 'add-predmet')">Dodaj Predmet</a>
+    </div>
+    <div class="tab">
+        <a href="#lista-predmeta" onclick="showContent(event, 'lista-predmeta')">Predmeti</a>
+    </div>
+    <div class="tab">
+        <a href="#lista-studenata" onclick="showContent(event, 'lista-studenata')">Studenti</a>
+    </div>
+    <div class="tab">
+        <a href="#lista-profesora" onclick="showContent(event, 'lista-profesora')">Profesori</a>
+    </div>
+    <div class="tab">
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+</div>

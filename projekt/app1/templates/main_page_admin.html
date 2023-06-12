@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Main Page - Administrator</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/filter.js' %}"></script>
+  <script src="{% static 'js/tabs.js' %}"></script>
+</head>
+
+<body>
+  <div class="container">
+    {% include 'sidebar.html' %}
+    <div class="content">
+      {% include 'add_predmet.html' %}
+      <div id="home" class="tab-content{% if active_tab == 'home' %} active{% endif %}">
+        <h2>Home</h2>
+        <p>Main Page - Administrator {{ user.username }}</p>
+      </div>
+      <div id="register" class="tab-content{% if active_tab == 'register' %} active{% endif %}">
+        <a href="{% url 'register' %}">Register</a>
+      </div>
+      {% include 'lista_predmeta.html' %}
+      {% include 'lista_studenata.html' %}
+      {% include 'lista_profesora.html' %}
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="myModal" class="modal">
+    <!-- View Details Modal -->
+    {% for predmet in predmeti %}
+    <div id="detailsModal{{ predmet.id }}" class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>{{ predmet.ime }}</h2>
+      <div class="modal-field">
+        <span class="field-label success">Kod:</span>
+        <span class="field-value">{{ predmet.kod }}</span>
+      </div>
+      <div class="modal-field">
+        <span class="field-label success">Program:</span>
+        <span class="field-value">{{ predmet.program }}</span>
+      </div>
+      <div class="modal-field">
+        <span class="field-label success">Semestar Redovni:</span>
+        <span class="field-value">{{ predmet.sem_redovni }}</span>
+      </div>
+      <div class="modal-field">
+        <span class="field-label success">Semestar Izvanredni:</span>
+        <span class="field-value">{{ predmet.sem_izvanredni }}</span>
+      </div>
+      <div class="modal-field">
+        <span class="field-label success">Izborni:</span>
+        <span class="field-value">{{ predmet.izborni }}</span>
+      </div>
+      <div class="modal-field">
+        <span class="field-label success">Nositelj:</span>
+        <span class="field-value">{{ predmet.nositelj }}</span>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Delete Confirmation Modal -->
+    {% for predmet in predmeti %}
+    <div id="deleteModal{{ predmet.id }}" class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Delete Predmet {{ predmet.ime }}</h2>
+      <p>Are you sure you want to delete {{ predmet.ime }}?</p>
+      <form method="post" action="{% url 'delete_predmet' predmet_id=predmet.pk %}">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+        <button type="button" onclick="closeModal()">No</button>
+      </form>
+    </div>
+    {% endfor %}
+
+    <!-- Modal for Predmeti -->
+    {% for professor in professors %}
+    <div id="predmetiModal{{ professor.id }}" class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2>Predmeti - {{ professor.username }}</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Ime</th>
+            <th>Kod</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for predmet in professor.predmet_set.all %}
+          <tr>
+            <td>{{ predmet.ime }}</td>
+            <td>{{ predmet.kod }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+
+</html>

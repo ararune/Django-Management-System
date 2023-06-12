@@ -1,0 +1,42 @@
+<!-- upisni_list.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/upis.css' %}">
+</head>
+
+<body>
+    <a href="{% url 'main_page_admin' %}">Back to Home</a>
+    <div class="modal-content">
+        <h2>Upisni List - {{ student.username }} - {{ student.status }}</h2>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <table>
+                    <tbody>
+                        {% for predmet in predmeti %}
+                            {% if student.status == 'redovni' %}
+                                {% with semester=predmet.sem_redovni %}
+                                    {% include 'group_row.html' %}
+                                {% endwith %}
+                            {% elif student.status == 'izvanredni' %}
+                                {% with semester=predmet.sem_izvanredni %}
+                                    {% include 'group_row.html' %}
+                                {% endwith %}
+                            {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <input type="submit" value="Submit" class="btn">
+                {% if success_message %}
+                <p class="success">{{ success_message }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

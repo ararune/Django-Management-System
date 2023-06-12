@@ -1,0 +1,32 @@
+<div id="lista-studenata" class="tab-content{% if active_tab == 'lista-studenata' %} active{% endif %}">
+    <h2>Lista Studenata</h2>
+    <div class="filter">
+        <label for="status-filter">Filter by status:</label>
+        <select id="status-filter" onchange="filterStudents(this.value)">
+            <option value="all">All</option>
+            <option value="redovni">Redovni</option>
+            <option value="izvanredni">Izvanredni</option>
+        </select>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr class="student-row" data-status="{{ student.status }}">
+                <td>{{ student.username }}</td>
+                <td>{{ student.status }}</td>
+                <td>
+                    <a href="{% url 'edit_student' student.id %}">Edit</a>
+                    <a href="{% url 'upisni-list' student.id %}">Upis</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

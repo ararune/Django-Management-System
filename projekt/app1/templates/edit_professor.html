@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Professor - Administrator</title>
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+</head>
+<body>
+    <a href="{% url 'main_page_admin' %}">Back to Home</a>
+    <div class="modal-content">
+        <h2>Edit</h2>
+        <div class="form-group">
+          <form method="post" action="{% url 'edit_professor' professor_id=professor_id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Update</button>
+            {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+</body>
+</html>

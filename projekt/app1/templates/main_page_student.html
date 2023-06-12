@@ -1,0 +1,62 @@
+<!-- main_page_student.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Main Page - Student</title>
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+  <script src="{% static 'js/modal.js' %}"></script>
+  <script src="{% static 'js/filter.js' %}"></script>
+  <script src="{% static 'js/tabs.js' %}"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="tab">
+        <a href="#home" onclick="showContent(event, 'home')">Home</a>
+      </div>
+      <div class="tab">
+        <a href="#predmeti" onclick="showContent(event, 'predmeti')">Predmeti</a>
+      </div>
+      <div class="tab">
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+    <div class="content">
+      <div id="predmeti" class="tab-content{% if active_tab == 'predmeti' %} active{% endif %}">
+        <h2>Predmeti</h2>
+        <a href="{% url 'upisni-list-student' %}">Upis</a>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Predmet</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for predmet in predmeti %}
+            <tr>
+              <td>{{ predmet.ime }}</td>
+              <td>
+                {% for upis in upis_queryset %}
+                {% if upis.predmet == predmet %}
+                {{ upis.status }}
+                {% endif %}
+                {% endfor %}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div id="home" class="tab-content{% if active_tab == 'home' %} active{% endif %}">
+        <h2>Home</h2>
+        <p>Main Page - Student {{ user.username }}</p>
+      </div>      
+    </div>
+  </div>
+
+</body>

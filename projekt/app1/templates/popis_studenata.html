@@ -1,0 +1,69 @@
+<!-- popis_studenata.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Popis Studenata</title>
+    <link rel="stylesheet" href="{% static 'css/popis_studenata.css' %}">
+    <script>
+        function filterStudents(status) {
+            var tableRows = document.getElementsByClassName("student-row");
+            for (var i = 0; i < tableRows.length; i++) {
+                var row = tableRows[i];
+                if (status === "all" || row.getAttribute("data-status") === status) {
+                    row.style.display = "table-row";
+                } else {
+                    row.style.display = "none";
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var statusSelect = document.getElementById('status');
+            statusSelect.addEventListener('change', function () {
+                if (statusSelect.value === '') {
+                    filterStudents('all');
+                } else {
+                    filterStudents(statusSelect.value);
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <a href="{% url 'main_page_admin' %}">Back to Home</a>
+    <div class="modal-content">
+        <h2>Popis Studenata Na Predmetu {{ predmet.ime }}</h2>
+        <div class="form-group">
+            <form method="GET" id="filter-form">
+                <label for="status">Status:</label>
+                <select name="status" id="status">
+                    <option value="">All</option>
+                    <option value="Upisan">Upisan</option>
+                    <option value="Dobio Potpis">Dobio Potpis</option>
+                    <option value="Izgubio Potpis">Izgubio Potpis</option>
+                </select>
+                <noscript><input type="submit" value="Filter"></noscript>
+            </form>
+            <table>
+                <tr>
+                    <th>Student</th>
+                    <th>Status</th>
+                </tr>
+                {% for status, students in students_by_status.items %}
+                {% for student in students %}
+                <tr class="student-row" data-status="{{ status }}">
+                    <td>{{ student }}</td>
+                    <td>{{ status }}</td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSRF Verification Failed</title>
+    <link rel="stylesheet" href="{% static 'css/csrf_failure.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="{% static 'img/astronaut.png' %}" alt="Astronaut Image">
+        </div>
+        <div class="content">
+            <h1>CSRF Verification Failed</h1>
+            <p>{{ reason }}</p>
+            <a class="button" href="{% url 'login' %}">Go back to login</a>
+        </div>
+    </div>
+</body>
+</html>

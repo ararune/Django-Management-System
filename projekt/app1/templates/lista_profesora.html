@@ -1,0 +1,24 @@
+<div id="lista-profesora" class="tab-content{% if active_tab == 'lista-profesora' %} active{% endif %}">
+    <h2>Lista Profesora</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for professor in professors %}
+            <tr>
+                <td>{{ professor.username }}</td>
+                <td>{{ professor.email }}</td>
+                <td>
+                    <a href="#" onclick="openModal('predmetiModal{{ professor.id }}')">Predmeti</a>
+                    <a href="{% url 'edit_professor' professor.id %}">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

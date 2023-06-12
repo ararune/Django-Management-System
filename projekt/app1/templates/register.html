@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+  <div class="sidebar">
+    <a href="{% url 'main_page_admin' %}">Back to Home</a>
+  </div>
+  <div class="container">
+    <h5 class="text-xl font-medium">Register</h5>
+    <div class="form-group">
+    <form method="post" class="space-y-6">
+      {% csrf_token %}
+      {{ form.as_p }}
+      {% if form.uloga.value == 'student' %}
+          <label for="{{ form.status.id_for_label }}">Status:</label>
+          {{ form.status }}
+        </div>
+      {% endif %}
+      <button type="submit">
+        Register</button>
+    </form>
+  </div>
+</body>
+</html>
