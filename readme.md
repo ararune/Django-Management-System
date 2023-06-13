@@ -7,6 +7,7 @@ This is a Student Management System web application developed using Django, a Py
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Images](#images)
 
 
 ## Features
@@ -69,5 +70,10 @@ Access the application in your web browser at http://localhost:8000.
 2. Log in to the system using your credentials, for starters you can use admin user with username `admin` and password `admin`
 3. Under 'Dodaj Predmet' tab you can create some courses.
 4. After that you can go ahead and Register some professors and then some students.
+
+## Images
+
+![Login](/img/login.png) ![Registration](/img/Registration.png) ![Predmeti](/img/predmeti.png)
+
 
 
