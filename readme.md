@@ -33,7 +33,7 @@ git clone https://github.com/your-username/student-management-system.git
 Create a virtual environment for the project:
 
 ```bash
-python3 -m venv venv
+python -m venv venv
 ```
 Activate the virtual environment:
 
