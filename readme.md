@@ -73,7 +73,7 @@ Access the application in your web browser at http://localhost:8000.
 
 ## Images
 
-<img src="/img/login.png" alt="Login" width="200"/> <img src="/img/predmeti.png" alt="Predmeti" width="200"/> <img src="/img/upis.png" alt="Upis" width="200"/> <img src="/img/studenti-na-predmetu.png" alt="Studenti na predmetu" width="200"/>
+<img src="/img/login.png" alt="Login" width="250"/> <img src="/img/predmeti.png" alt="Predmeti" width="280"/> <img src="/img/upis.png" alt="Upis" width="250"/> <img src="/img/studenti-na-predmetu.png" alt="Studenti na predmetu" width="250"/>
 
 
 
