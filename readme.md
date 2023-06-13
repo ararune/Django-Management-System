@@ -1,47 +1,66 @@
-## Linux Shell
+## Student Management System
 
-This is a simple shell program written in C. It supports basic shell commands such as `cd`, `ls`, `touch`, `rm`, `rmdir`, `mkdir`, `find`, `fetch`, and `exit`.
+This is a Student Management System web application developed using Django, a Python web framework. It provides functionality for managing students, professors, and courses within an educational institution.
 
 ## Table of Contents
 
-- [Getting Started](#getting-started)
+- [Features](#features)
+- [Installation](#installation)
 - [Usage](#usage)
 
 
-## Getting Started
+## Features
 
-To compile and run the shell program, you need to have a C compiler installed on your system, such as `gcc`.
-Navigate to the root directory of the project in your terminal and run the following command : 
-
-```bash
-make
-```
-
-Then, to start the shell, run the following command:
-```bash
-./main
-```
-
-When you are done using the shell, you can clean up the compiled files by running the following command:
-
-```bash
-make clean
-```
-
-## Usage
-
-The shell supports the following commands:
-
-
-| Command             | Description                                                         |
+| Feature            | Description                                                         |
 |---------------------|---------------------------------------------------------------------|
-| `cd <directory>`    | Change the current working directory to `directory`                 |
-| `ls`                | List the contents of the current working directory                  |
-| `touch <file>`      | Create a new empty file with the name `file`                         |
-| `rm <file>`         | Delete the file with the name `file`                                 |
-| `rmdir <directory>` | Delete the directory with the name `directory`                       |
-| `mkdir <directory>` | Create a new empty directory with the name `directory`               |
-| `cdir <directory>`  | Create a new empty `directory` and change the current working `directory` |
-| `find <file\directory>` | List full path of `file` and `directory`, search from `home`         |
-| `fetch`             | Display system information                                           |
+| User Roles    | Supports three user roles: administrator, professor, and student.                |
+| User Registration               | New users can register with the system by providing required information.                  |
+| User Login/Logout      | Registered users can log in and log out of the system.                         |
+| User Profile Editing         | Users can edit their profile information such as name, email, and password.                                 |
+| Course Management | Create, update, and delete courses.                       |
+| Enrollment | Students can view available courses and enroll in them.               |
+| Enrollment List  | 	Professors and administrators can view a list of enrolled students. |
+| User Access Control | Restricts access to certain functionalities based on user roles and permissions.         |
+
+## Installation
+
+Follow these steps to install and run the Student Management System:
+
+```bash
+git clone https://github.com/your-username/student-management-system.git
+```
+
+Create a virtual environment for the project:
+
+```bash
+python3 -m venv venv
+```
+Activate the virtual environment:
+
+- Windows 
+```powershell
+venv\Scripts\activate
+```
+- Linux/macOS
+```bash
+source venv/bin/activate
+```
+Install the project dependencies:
+```bash
+pip install -r requirements.txt
+```
+Apply database migrations:
+```bash
+python manage.py migrate
+```
+Create a superuser (administrator) account: 
+```bash
+python manage.py createsuperuser
+```
+Start the development server:
+```bash
+python manage.py runserver
+```
+Access the application in your web browser at http://localhost:8000/accounts/login.
+
 
