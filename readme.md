@@ -73,7 +73,10 @@ Access the application in your web browser at http://localhost:8000.
 
 ## Images
 
-![Login](/img/login.png) ![Registration](/img/Registration.png) ![Predmeti](/img/predmeti.png)
+![Login](/img/login.png) ![Registration](/img/registration.png) ![Predmeti](/img/predmeti.png)
+
+<img src="/img/login.png" alt="Login" width="200"/> <img src="/img/registration.png" alt="Registration" width="200"/> <img src="/img/predmeti.png" alt="Predmeti" width="200"/>
+
 
 
 
