@@ -53,7 +53,7 @@ Apply database migrations:
 ```bash
 python manage.py migrate
 ```
-Create a superuser (administrator) account: 
+Create a superuser (administrator) account (optional step): 
 ```bash
 python manage.py createsuperuser
 ```
@@ -61,6 +61,13 @@ Start the development server:
 ```bash
 python manage.py runserver
 ```
-Access the application in your web browser at http://localhost:8000/accounts/login.
+Access the application in your web browser at http://localhost:8000.
+
+## Usage
+
+1. Access the login page by visiting http://localhost:8000/accounts/login
+2. Log in to the system using your credentials, for starters you can use admin user with username `admin` and password `admin`
+3. Under 'Dodaj Predmet' tab you can create some courses.
+4. After that you can go ahead and Register some professors and then some students.
 
 
