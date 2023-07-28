@@ -28,7 +28,7 @@ This is a Student Management System web application developed using Django, a Py
 Follow these steps to install and run the Student Management System:
 
 ```bash
-git clone https://github.com/your-username/student-management-system.git
+git clone https://github.com/ararune/Django-Management-System.git
 ```
 
 Create a virtual environment for the project:
